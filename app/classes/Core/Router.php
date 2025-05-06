@@ -36,13 +36,19 @@
         $pattern = '#^'.$pattern.'$#';
 
         
-        if(preg_match($pattern, $pathURL))
+        if(preg_match($pattern, $pathURL, $varMatches))
         {
+          array_shift($varMatches);
+          preg_match_all("#\{([\w-]+)\}#", $route['path'],$keyMatches);
+
           $file = '../app/controllers/'.$route['handler'];
-          if(file_exists($file))
+          if(file_exists($file)){
+
+            $params = array_combine($keyMatches[1],  $varMatches);
               require $file;
-            else
+            }else{
                 redirect('404');
+              }
               return;
         }
       }
@@ -52,3 +58,4 @@
   
     }
   }
+  // \{([\w-]+)\}

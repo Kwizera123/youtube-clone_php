@@ -14,6 +14,6 @@ $router->post('/signup','auth/signup.php');
 
 $router->get('/profile/{id}','profile.php');
 $router->get('/profile/edit/{id}','profile.php');
-$router->get('/profile/delete/{cat}/{id}','profile.php');
+$router->get('/profile/delete/{cat}/{my-id}','profile.php');
 
 $router->run();
