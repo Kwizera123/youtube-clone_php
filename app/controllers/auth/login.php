@@ -1,3 +1,5 @@
 <?php 
 
-echo 'login controller';
+//echo 'login controller';
+
+view( 'login');

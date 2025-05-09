@@ -14,13 +14,15 @@
 
     public function post(string $path, string $handler):void
     {
-      $this->routes['POST'][] = ['path'=>$path, 'handler'=>$handler];
+      $this->routes['POST'][] = ['path'=>$path,'handler'=>$handler];
     }
 
     public function run()
     {
       $method = $_SERVER['REQUEST_METHOD'];
       $pathURL = rtrim($_SERVER['REQUEST_URI'],'/') ?: '/';
+      $pathURL = str_replace(dirname($_SERVER['SCRIPT_NAME']), '/',$pathURL);
+      $pathURL = empty($pathURL) ? '/': $pathURL;
 
       if(!isset($this->routes[$method])){
 
@@ -58,4 +60,3 @@
   
     }
   }
-  // \{([\w-]+)\}
